@@ -10,13 +10,13 @@ const AppliedJobs = () => {
   const fetchApplications = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/applications/candidate",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+  `${import.meta.env.VITE_API_URL}/api/applications/candidate`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
       setApps(res.data);
     } catch (err) {

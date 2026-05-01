@@ -6,14 +6,24 @@ const Applications = () => {
 
   useEffect(() => {
     const fetchApps = async () => {
-      const token = localStorage.getItem("token");
-      const res = await axios.get(
-        "http://localhost:5000/api/applications/recruiter",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      setApps(res.data);
+      try {
+        const token = localStorage.getItem("token");
+
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/applications/recruiter`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        console.log("Applications API Response:", res.data);
+        setApps(res.data);
+      } catch (err) {
+        console.error(
+          "Applications fetch failed:",
+          err.response?.data || err.message
+        );
+      }
     };
 
     fetchApps();
