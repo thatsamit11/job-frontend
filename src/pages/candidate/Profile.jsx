@@ -52,12 +52,21 @@ const Profile = () => {
             </div>
           </div>
 
-          <button
-            onClick={() => navigate("/candidate/profile/edit")}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg"
-          >
-            Edit Profile
-          </button>
+        <div className="flex gap-3">
+  <button
+    onClick={() => navigate("/candidate/dashboard")}
+    className="px-6 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800"
+  >
+    ← Dashboard
+  </button>
+
+  <button
+    onClick={() => navigate("/candidate/profile/edit")}
+    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+  >
+    Edit Profile
+  </button>
+</div>
         </div>
 
         <Section title="Bio">
