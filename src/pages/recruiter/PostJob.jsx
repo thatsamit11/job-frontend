@@ -21,11 +21,11 @@ const PostJob = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/jobs", form, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+   await axios.post(`${import.meta.env.VITE_API_URL}/api/jobs`, form, {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+});
 
       alert("Job posted successfully");
 
