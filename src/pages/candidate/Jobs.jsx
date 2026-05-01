@@ -20,26 +20,29 @@ const Jobs = () => {
         const token = localStorage.getItem("token");
 
         // ✅ fetch jobs
-        const jobsRes = await axios.get("http://localhost:5000/api/jobs", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const jobsRes = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/jobs`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
         setJobs(Array.isArray(jobsRes.data) ? jobsRes.data : []);
 
         // ✅ fetch applied jobs count
         const appliedRes = await axios.get(
-          "http://localhost:5000/api/applications/candidate",
+          `${import.meta.env.VITE_API_URL}/api/applications/candidate`,
           {
             headers: { Authorization: `Bearer ${token}` },
-          },
+          }
         );
         setAppliedCount(appliedRes.data.length);
 
         // ✅ fetch saved jobs count
         const savedRes = await axios.get(
-          "http://localhost:5000/api/jobs/saved",
+          `${import.meta.env.VITE_API_URL}/api/jobs/saved`,
           {
             headers: { Authorization: `Bearer ${token}` },
-          },
+          }
         );
         setSavedCount(savedRes.data.length);
       } catch (err) {
@@ -58,11 +61,11 @@ const Jobs = () => {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        `http://localhost:5000/api/applications/apply/${jobId}`,
+        `${import.meta.env.VITE_API_URL}/api/applications/apply/${jobId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
-        },
+        }
       );
 
       alert("✅ Applied successfully");
@@ -78,11 +81,11 @@ const Jobs = () => {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        `http://localhost:5000/api/jobs/save/${jobId}`,
+        `${import.meta.env.VITE_API_URL}/api/jobs/save/${jobId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
-        },
+        }
       );
 
       alert("💾 Job saved");
@@ -97,7 +100,7 @@ const Jobs = () => {
     (job) =>
       job.title?.toLowerCase().includes(search.toLowerCase()) ||
       job.company?.toLowerCase().includes(search.toLowerCase()) ||
-      job.location?.toLowerCase().includes(search.toLowerCase()),
+      job.location?.toLowerCase().includes(search.toLowerCase())
   );
 
   if (loading) {
@@ -106,7 +109,6 @@ const Jobs = () => {
 
   return (
     <div className="grid grid-cols-3 gap-8">
-      {/* ================= LEFT ================= */}
       <div className="col-span-2">
         <div className="flex gap-4 mb-6">
           <input
@@ -127,9 +129,7 @@ const Jobs = () => {
             filteredJobs.map((job) => (
               <div
                 key={job._id}
-                className="p-6 rounded-2xl border-2 border-blue-400
-                           bg-gradient-to-br from-sky-50 to-white
-                           hover:shadow-lg transition"
+                className="p-6 rounded-2xl border-2 border-blue-400 bg-gradient-to-br from-sky-50 to-white hover:shadow-lg transition"
               >
                 <div
                   onClick={() => navigate(`jobs/${job._id}`)}
@@ -173,10 +173,8 @@ const Jobs = () => {
         </div>
       </div>
 
-      {/* ================= RIGHT ================= */}
       <div className="bg-white p-6 rounded-2xl shadow h-fit">
         <h3 className="font-semibold mb-4">Application Status</h3>
-
         <p>Applied: {appliedCount}</p>
         <p>Saved Jobs: {savedCount}</p>
       </div>

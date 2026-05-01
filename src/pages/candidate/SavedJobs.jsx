@@ -8,7 +8,7 @@ const SavedJobs = () => {
 
   const fetchSaved = async () => {
     const res = await axios.get(
-      "http://localhost:5000/api/jobs/saved",
+      `${import.meta.env.VITE_API_URL}/api/jobs/saved`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -22,7 +22,7 @@ const SavedJobs = () => {
 
   const handleUnsave = async (jobId) => {
     await axios.delete(
-      `http://localhost:5000/api/jobs/unsave/${jobId}`,
+      `${import.meta.env.VITE_API_URL}/api/jobs/unsave/${jobId}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

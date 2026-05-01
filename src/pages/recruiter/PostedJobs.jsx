@@ -17,13 +17,13 @@ const PostedJobs = () => {
         }
 
         const res = await axios.get(
-          "http://localhost:5000/api/jobs/recruiter",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+  `${import.meta.env.VITE_API_URL}/api/jobs/recruiter`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
         setJobs(res.data);
       } catch (err) {
@@ -51,14 +51,14 @@ const PostedJobs = () => {
         return;
       }
 
-      await axios.delete(
-        `http://localhost:5000/api/jobs/${jobId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+    await axios.delete(
+  `${import.meta.env.VITE_API_URL}/api/jobs/${jobId}`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
       // 🔥 remove from UI
       setJobs((prev) => prev.filter((job) => job._id !== jobId));

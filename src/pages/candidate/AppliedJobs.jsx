@@ -32,13 +32,13 @@ const AppliedJobs = () => {
 
   const handleWithdraw = async (appId) => {
     await axios.delete(
-      `http://localhost:5000/api/applications/withdraw/${appId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  `${import.meta.env.VITE_API_URL}/api/applications/withdraw/${appId}`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
     setApps((prev) => prev.filter((a) => a._id !== appId));
   };

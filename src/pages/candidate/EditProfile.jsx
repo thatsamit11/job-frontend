@@ -25,7 +25,7 @@ const EditProfile = () => {
         if (!token) return;
 
         const res = await axios.get(
-          "http://localhost:5000/api/profile/me",
+          `${import.meta.env.VITE_API_URL}/api/profile/me`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -90,7 +90,7 @@ const EditProfile = () => {
       }
 
       const res = await axios.put(
-        "http://localhost:5000/api/profile/me",
+        `${import.meta.env.VITE_API_URL}/api/profile/me`,
         form,
         {
           headers: {

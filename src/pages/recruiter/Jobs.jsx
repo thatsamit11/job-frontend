@@ -14,10 +14,12 @@ const Jobs = () => {
       try {
         const token = localStorage.getItem("token");
 
-        const res = await axios.get("http://localhost:5000/api/jobs", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
+       const res = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/jobs`,
+  {
+    headers: { Authorization: `Bearer ${token}` },
+  }
+);
         if (Array.isArray(res.data)) setJobs(res.data);
         else if (Array.isArray(res.data.jobs)) setJobs(res.data.jobs);
         else setJobs([]);
@@ -37,12 +39,12 @@ const Jobs = () => {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        `http://localhost:5000/api/applications/apply/${jobId}`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+  `${import.meta.env.VITE_API_URL}/api/applications/apply/${jobId}`,
+  {},
+  {
+    headers: { Authorization: `Bearer ${token}` },
+  }
+);
 
       alert("✅ Applied successfully");
     } catch (err) {
@@ -56,13 +58,12 @@ const Jobs = () => {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        `http://localhost:5000/api/jobs/save/${jobId}`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-
+  `${import.meta.env.VITE_API_URL}/api/jobs/save/${jobId}`,
+  {},
+  {
+    headers: { Authorization: `Bearer ${token}` },
+  }
+);
       alert("💾 Job saved");
     } catch (err) {
       alert("Save failed");

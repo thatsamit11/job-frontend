@@ -7,16 +7,16 @@ const JobDetails = () => {
   const navigate = useNavigate();
   const [job, setJob] = useState(null);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/jobs/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => setJob(res.data))
-      .catch(() => alert("Failed to load job"));
-  }, [id]);
+useEffect(() => {
+  axios
+    .get(`${import.meta.env.VITE_API_URL}/api/jobs/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .then((res) => setJob(res.data))
+    .catch(() => alert("Failed to load job"));
+}, [id]);
 
   if (!job) return <p>Loading...</p>;
 
