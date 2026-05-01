@@ -23,18 +23,18 @@ const RecruiterDashboard = () => {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        // Total Jobs
-        const jobsRes = await axios.get(
-          "http://localhost:5000/api/jobs/recruiter",
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
-        setTotalJobs(jobsRes.data.length);
+       // Total Jobs
+const jobsRes = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/jobs/recruiter`,
+  { headers: { Authorization: `Bearer ${token}` } }
+);
+setTotalJobs(jobsRes.data.length);
 
-        // Applications
-        const appsRes = await axios.get(
-          "http://localhost:5000/api/applications/recruiter",
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
+// Applications
+const appsRes = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/applications/recruiter`,
+  { headers: { Authorization: `Bearer ${token}` } }
+);
         setApplications(appsRes.data);
       } catch (err) {
         console.error("Dashboard fetch failed", err);

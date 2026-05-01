@@ -12,14 +12,14 @@ const Profile = () => {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const res = await axios.get(
-          "http://localhost:5000/api/profile/me",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+       const res = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/profile/me`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
         setProfile(res.data);
         localStorage.setItem(
